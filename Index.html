@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklab</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container"> 
+        <img id="image" src="coffee and code.jpg" alt="A coffee and code image">
+        
+        <div class="container_1">
+            <div class="content">
+                <h1>Journey Tech</h1>
+                <p><i>Journey Tech offers a seamless and structured way<br> to learn and improve your digital skill.</i></p><br><br>
+            </div>
+    
+           <div id="form">
+                <form method="get" action="" endtype="multipart/form data">
+                <label for="Email">Email:  </label>
+                <input type="text" placeholder="Input email" id="Email" class="input" name="Email"required><br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password"name="password" placeholder="Enter your password" required><br><br>
+
+                <label for="role">Select Role: </label>
+
+                <select id="role" class="input" name="role">
+                    <option value="" required>Select role</option>
+                    <option value="Student">Student</option>
+                    <option value="Instructor">Instructor</option>
+                    <option value="Admin">Admin</option>
+                        
+                </select><br><br>
+                <button type="button" class="btn btn-lg" onclick="loginUser()">LOG IN</button><br><br>
+                <p class="reset-password">
+                    <i>Reset Password?</i> 
+                    <a href="reset_password.html">Click here</a>
+                </p>
+                </form>
+           </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+//    function togglePassword() {
+//         var passwordField = document.getElementById("password");
+//         var icon = document.querySelector(".toggle-icon");
+
+//         if (passwordField.type === "password") {
+//             passwordField.type = "text";
+//             icon.textContent = "🙈"; // Change icon to hide mode
+//         } else {
+//             passwordField.type = "password";
+//             icon.textContent = "👁️"; // Change icon to show mode
+//         }
+//     }
+
+
+   function loginUser(){
+    const email = document.getElementById("Email").value;
+    const password = document.getElementById("password").value;
+    const role = document.getElementById("role").value;
+
+    console.log("Attempting login with:", email, password, role); // Debugging
+
+
+    fetch("http://localhost:8080/login",{
+        method:"POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({Email: email, password: password, role: role})
+    })
+    .then(response => response.json())
+        .then(data => {
+
+            console.log("Server Response:", data); // Debugging
+
+            if (data.message === "Login successful") {
+                // alert("Login successful!");
+                 
+                showLoadingScreen(); //show loading animation
+
+                setTimeout(() =>{
+                    if (role === "Student") {
+        window.location.href = "emmy.html";
+    } else if (role === "Instructor") {
+        window.location.href = "instructor_dashboard.html";
+    } else if (role === "Admin") {
+        window.location.href = "admin.html";
+    } else {
+        alert("Invalid role selected!");
+    }
+
+                }, 2000);
+            } else {
+                alert("Login failed: " + data.error);
+            }
+        })
+        .catch(error => console.error("Error:", error));
+    } 
+
+// Function to show loading animation
+function showLoadingScreen() {
+    document.body.innerHTML = `
+        <div class="loading-container">
+            <div class="loading-bubbles">
+                <span></span><span></span><span></span><span></span>
+            </div>
+            <p class="loading-text">Logging in...</p>
+        </div>
+    `;
+}
+</script>

@@ -1,0 +1,112 @@
+*{
+    background-color: darkgrey;
+    margin: o;
+    padding: o;
+    box-sizing:border-box;
+}
+
+.container{
+    display: flex;
+    height: 100vh;
+    overflow:hidden;
+
+}
+
+#image{
+    width: 50%;
+    height:100%;
+    object-fit: cover;
+    margin: 0%;
+    overflow:hidden;
+}
+
+.container_1{
+    width: 50%;
+    align-items: center;
+    justify-content:end;
+    text-align: center;
+    padding: 10px;
+    
+    
+}
+
+.content{
+    color: aquamarine;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#form{
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+     gap: 20px; /*Space between inputs */
+    align-items: center;
+    overflow: hidden;
+    
+}
+
+.input{
+    width:100%;
+    padding: 10px;
+}
+
+#password{
+    width:100%;
+    padding: 10px;
+    
+}
+
+
+button {
+    background:darkorange;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    border:aquamarine;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.h1{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+#resetPasswordForm{
+    display:flex;
+    height: 100vh;
+    flex-direction: column;
+    gap: 10px; 
+    background-color: aquamarine;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+
+.reset-p{
+    width:30%;
+    padding: 8px;
+
+    
+}
+.button{
+    width:30%;
+    padding: 8px;
+    cursor: pointer; 
+}
+
+.reset-password {
+    display: inline; /* Makes the text and link stay on the same line */
+    font-size: 14px; /* Adjust font size if needed */
+}
+.reset-password a {
+    color: blue; /* Make it look like a clickable link */
+    text-decoration: underline; /* Underline for better visibility */
+    cursor: pointer;
+}
+
+
