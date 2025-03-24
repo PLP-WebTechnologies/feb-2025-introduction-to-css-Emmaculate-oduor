@@ -32,7 +32,7 @@
                     <option value="Admin">Admin</option>
                         
                 </select><br><br>
-                <button type="button" class="btn btn-lg" onclick="loginUser()">LOG IN</button><br><br>
+                <button type="button" class="btn btn-lg">LOG IN</button><br><br>
                 <p class="reset-password">
                     <i>Reset Password?</i> 
                     <a href="reset_password.html">Click here</a>
@@ -43,74 +43,3 @@
     </div>
 </body>
 </html>
-<script>
-//    function togglePassword() {
-//         var passwordField = document.getElementById("password");
-//         var icon = document.querySelector(".toggle-icon");
-
-//         if (passwordField.type === "password") {
-//             passwordField.type = "text";
-//             icon.textContent = "🙈"; // Change icon to hide mode
-//         } else {
-//             passwordField.type = "password";
-//             icon.textContent = "👁️"; // Change icon to show mode
-//         }
-//     }
-
-
-   function loginUser(){
-    const email = document.getElementById("Email").value;
-    const password = document.getElementById("password").value;
-    const role = document.getElementById("role").value;
-
-    console.log("Attempting login with:", email, password, role); // Debugging
-
-
-    fetch("http://localhost:8080/login",{
-        method:"POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({Email: email, password: password, role: role})
-    })
-    .then(response => response.json())
-        .then(data => {
-
-            console.log("Server Response:", data); // Debugging
-
-            if (data.message === "Login successful") {
-                // alert("Login successful!");
-                 
-                showLoadingScreen(); //show loading animation
-
-                setTimeout(() =>{
-                    if (role === "Student") {
-        window.location.href = "emmy.html";
-    } else if (role === "Instructor") {
-        window.location.href = "instructor_dashboard.html";
-    } else if (role === "Admin") {
-        window.location.href = "admin.html";
-    } else {
-        alert("Invalid role selected!");
-    }
-
-                }, 2000);
-            } else {
-                alert("Login failed: " + data.error);
-            }
-        })
-        .catch(error => console.error("Error:", error));
-    } 
-
-// Function to show loading animation
-function showLoadingScreen() {
-    document.body.innerHTML = `
-        <div class="loading-container">
-            <div class="loading-bubbles">
-                <span></span><span></span><span></span><span></span>
-            </div>
-            <p class="loading-text">Logging in...</p>
-        </div>
-    `;
-}
-</script>

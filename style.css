@@ -100,12 +100,12 @@ button {
 }
 
 .reset-password {
-    display: inline; /* Makes the text and link stay on the same line */
-    font-size: 14px; /* Adjust font size if needed */
+    display: inline;
+    font-size: 14px; 
 }
 .reset-password a {
-    color: blue; /* Make it look like a clickable link */
-    text-decoration: underline; /* Underline for better visibility */
+    color: blue; 
+    text-decoration: underline;
     cursor: pointer;
 }
 
